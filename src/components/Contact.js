@@ -4,7 +4,7 @@ import ContactDetails from './ContactDetails';
 import ContactCreate from './ContactCreate';
 
 import update from 'react-addons-update';
-//4-5 2018.06.23
+//4-8 2018.06.23
 
 export default class Contact extends React.Component {
     
@@ -35,7 +35,25 @@ export default class Contact extends React.Component {
         this.handleRemove = this.handleRemove.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
-    
+
+    //component가 생성되기 전 method
+    componentWillMount(){ 
+        const contactData = localStorage.contactData;
+
+        if(contactData){
+            this.setState({
+                contactData: JSON.parse(contactData)
+            })
+        }
+    }
+
+    //component state가 update 될때마다 실행되는 method
+    componentDidUpdate(prevProps, prevState){
+        if(JSON.stringify(prevState.contactData) != JSON.stringify(this.state.contactData)){
+            localStorage.contactData = JSON.stringify(this.state.contactData);
+        }
+    }
+
     handleChange(e){
         this.setState({
             keyword: e.target.value
