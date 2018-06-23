@@ -1,5 +1,3 @@
-import React from 'react';
-import Contact from './Contact';
 import * as tf from '@tensorflow/tfjs';
 
 // Define a model for linear regression.
@@ -18,14 +16,3 @@ model.fit(xs, ys, {epochs: 10}).then(() => {
   // Use the model to do inference on a data point the model hasn't seen before:
   model.predict(tf.tensor2d([5], [1, 1])).print();
 });
-
-class App extends React.Component{
-    render(){
-        return(
-            <Contact/>
-        )
-    }
-}
-
-/*다른 코드에서 이 클래스를 불러서 사용할수 있도록 */
-export default App;
