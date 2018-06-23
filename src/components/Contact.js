@@ -57,6 +57,10 @@ export default class Contact extends React.Component {
     }
 
     handleRemove(){
+        if(this.state.selectedKey < 0){
+            return;
+        }
+
         this.setState({
             contactData: update(this.state.contactData,
                 {$splice:[[this.state.selectedKey,1]]}
@@ -67,7 +71,7 @@ export default class Contact extends React.Component {
 
     handleEdit(name, phone){
         this.setState({
-            contactData: update(this.state.contactDta,
+            contactData: update(this.state.contactData,
                 {
                     [this.state.selectedKey]:{
                         name: {$set: name},
@@ -76,6 +80,7 @@ export default class Contact extends React.Component {
                 }
             )
         });
+        // console.log('handleEdit!!')
     }
 
     render() {
@@ -107,8 +112,11 @@ export default class Contact extends React.Component {
                 />
                 <div>{mapToComponents(this.state.contactData)}</div>
                 <ContactDetails
-                    isSelected={this.state.selectedKey != -1}
-                    contact={this.state.contactData[this.state.selectedKey]}/>
+                    isSelected={this.state.selectedKey !== -1}
+                    contact={this.state.contactData[this.state.selectedKey]}
+                    onRemove={this.handleRemove}
+                    onEdit={this.handleEdit}
+                />
                 
                 <ContactCreate
                     onCreate={this.handleCreate}

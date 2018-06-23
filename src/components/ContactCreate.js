@@ -63,5 +63,7 @@ ContactCreate.propTypes = {
 };
 
 ContactCreate.defaultProps = {
-    onCreate: () => { console.error('onCreate not defined');}
+    onCreate: () => { 
+        console.error('onCreate not defined');
+    }
 }
