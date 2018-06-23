@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 export default class ContactCreate extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class ContactCreate extends React.Component {
         this.setState({
             name:'',
             phone:''
-        })
+        });
     }
 
     render() {
@@ -51,14 +52,14 @@ export default class ContactCreate extends React.Component {
                         onChange={this.handleChange}
                     />
                 </p>
-                <button onclick={this.handleClick}>Create</button>
+                <button onClick={this.handleClick}>Create</button>
             </div>
         )
     }
 }
 
 ContactCreate.propTypes = {
-    onCreate: React.PropTypes.func
+    onCreate: PropTypes.func
 };
 
 ContactCreate.defaultProps = {
