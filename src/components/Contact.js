@@ -4,6 +4,8 @@ import ContactDetails from './ContactDetails';
 import ContactCreate from './ContactCreate';
 
 import update from 'react-addons-update';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';  //npm install react-addons-css-transition-group
+
 //4-8 2018.06.23
 
 export default class Contact extends React.Component {
@@ -119,6 +121,12 @@ export default class Contact extends React.Component {
             });
         };
         
+        const transitionOptions = {
+            transitionName:"fade",
+            transitionEnterTimeout:500,
+            transitionLeaveTimeout:500
+        };
+
         return (
             <div>
                 <h1>Contacts</h1>
@@ -128,7 +136,11 @@ export default class Contact extends React.Component {
                     value={this.state.keyword}
                     onChange={this.handleChange}
                 />
-                <div>{mapToComponents(this.state.contactData)}</div>
+                <div>
+                    <ReactCSSTransitionGroup {...transitionOptions}>
+                    {mapToComponents(this.state.contactData)}
+                    </ReactCSSTransitionGroup>
+                </div>
                 <ContactDetails
                     isSelected={this.state.selectedKey !== -1}
                     contact={this.state.contactData[this.state.selectedKey]}

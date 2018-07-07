@@ -3,3 +3,27 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+/*starting state of animation*/
+.fade-enter{
+  right:100px;
+  opacity:0;
+}
+
+/*end state of animation*/
+.fade-enter-active{
+  right:0px;
+  opacity:1.0;
+  transition: .5s ease-in all;
+}
+
+.fade-leave{
+  right:0px;
+  opacity:1.0;
+}
+
+.fade-leve-active{
+  right:-100px;
+  opacity:0;
+  transition: .5s ease-out all;
+}
